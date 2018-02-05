@@ -7,10 +7,11 @@ var ctx = c.getContext("2d");
 var pathStarted = false;
 
 var drawCircle = function(x, y){
-    ctx.arc(x, y, 10, 0, 2*Math.PI);
+    var radius = 10;
+    ctx.moveTo(x + radius,y); //jump straight to the starting point of the arc
+    ctx.arc(x, y, radius, 0, 2*Math.PI);
     ctx.fill();
     ctx.stroke();
-    ctx.closePath();
     ctx.moveTo(x, y);
 }
 
@@ -22,14 +23,14 @@ var drawLine = function(x, y){
     } else {
 	ctx.lineTo(x, y);
 	ctx.stroke();
-	ctx.closePath()
     }
 }
 
 var draw = function(e){
-    ctx.fillStyle = "#000000";
+    ctx.fillStyle = "#0000ff";
     drawLine(e.offsetX, e.offsetY);
     drawCircle(e.offsetX, e.offsetY);
+    ctx.moveTo(e.offsetX, e.offsetY);
 }
 
 var clear = function(){
